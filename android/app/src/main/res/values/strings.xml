@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Reflectify</string>
+    <string name="title_activity_main">Reflectify</string>
+    <string name="package_name">com.zaions.reflectify</string>
+    <string name="custom_url_scheme">com.zaions.reflectify</string>
+</resources>
