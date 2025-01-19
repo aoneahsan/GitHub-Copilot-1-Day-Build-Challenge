@@ -1,49 +1,83 @@
-import ZButton from '@/components/ZButton';
-import ZTranslate from '@/components/ZTranslate';
+import assetsImages from '@/assets';
+import { getAuthInstance } from '@/firebaseInstance/auth';
 import { useZNavigate } from '@/hooks/tanstack/router';
-import { useZTolgee, useZTolgeeTranslate } from '@/hooks/tolgee';
+import { IJournal } from '@/types/journal';
 import { appRoutes } from '@/utils/constants/route';
-import { tolgeeTranslationKeys } from '@/utils/tolgee';
-import './styles.scss';
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import React, { useEffect, useState } from 'react';
 
 const Home: React.FC = () => {
+  const [journals, setJournals] = useState<IJournal[]>([]);
   const zNavigate = useZNavigate();
-  const zTranslate = useZTolgeeTranslate();
-  const zTolgee = useZTolgee();
+  const firebaseAuth = getAuthInstance();
+
+  useEffect(() => {
+    const fetchJournals = async () => {
+      setJournals([]);
+    };
+
+    fetchJournals();
+  }, []);
+
+  const handleLogout = async () => {
+    await firebaseAuth.signOut();
+
+    zNavigate(appRoutes.login);
+  };
+
+  const addNewJournalEntry = async () => {
+    zNavigate(appRoutes.addJournalEntry);
+  };
 
   return (
-    <>
-      <select
-        onChange={(e) => zTolgee.changeLanguage(e.target.value)}
-        value={zTolgee.getLanguage()}
-      >
-        <option value='en'>🇬English</option>
-        <option value='ar'>🇨Arabic</option>
-      </select>
-      <br />
-      <ZButton
-        onClick={() => {
-          zNavigate(appRoutes.addJournalEntry);
-        }}
-      >
-        <ZTranslate
-          keyName={tolgeeTranslationKeys.journal.addNewJournalEntry}
+    <div className='p-4'>
+      <div className='flex justify-content-between align-items-center mb-4'>
+        <img
+          src={assetsImages.ReflectifyLogo}
+          alt='App Icon'
+          style={{ height: '50px' }}
         />
-      </ZButton>
-
-      <button
-        onClick={() => {
-          throw new Error('This is your first error!');
-        }}
+        <>
+          <Button
+            label='Add New Journal Entry'
+            icon='pi pi-sign-out'
+            onClick={addNewJournalEntry}
+          />
+          <Button
+            label='Logout'
+            icon='pi pi-sign-out'
+            onClick={handleLogout}
+          />
+        </>
+      </div>
+      <DataTable
+        value={journals}
+        paginator
+        rows={10}
+        className='p-datatable-gridlines'
       >
-        {zTranslate({ keyName: tolgeeTranslationKeys.sentry.breakTheWorld })}
-      </button>
-
-      <h1>{zTranslate({ keyName: tolgeeTranslationKeys.sentry.testing1 })}</h1>
-      <h2>
-        <ZTranslate keyName={tolgeeTranslationKeys.sentry.testing2} />
-      </h2>
-    </>
+        <Column
+          field='goodThings'
+          header='Good Things'
+          body={(rowData) => rowData.goodThings.join(', ')}
+        />
+        <Column
+          field='challengingThings'
+          header='Bad Things'
+          body={(rowData) => rowData.challengingThings.join(', ')}
+        />
+        <Column
+          field='toRememberThisDayFor'
+          header='Memorable Moment'
+        />
+        <Column
+          field='createdAt'
+          header='Date'
+        />
+      </DataTable>
+    </div>
   );
 };
 

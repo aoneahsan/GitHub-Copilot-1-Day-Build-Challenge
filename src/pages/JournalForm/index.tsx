@@ -1,30 +1,19 @@
-import assetsImages from '@/assets';
 import ZChips from '@/components/FormComponents/ZChips';
 import ZInput from '@/components/FormComponents/ZInput';
 import ZBadThingsInputArray from '@/components/JournalForm/ZBadThingsInputArray';
 import ZGoodThingsInputArray from '@/components/JournalForm/ZGoodThingsInputArray';
 import { FormInputTypeEnum, RFFormFieldEnum } from '@/enums/form';
 import { useZNavigate } from '@/hooks/tanstack/router';
+import { appRoutes } from '@/utils/constants/route';
 import { Formik } from 'formik';
 import { Button } from 'primereact/button';
-import { useMemo } from 'react';
 
 const JournalForm: React.FC = () => {
   const zNavigate = useZNavigate();
-  const containerStyle = useMemo(() => {
-    return {
-      backgroundImage: `url(${assetsImages.FormPageBG1})`,
-      width: '100%',
-      height: '100%',
-      backgroundSize: 'cover',
-      minHeight: '100vh',
-      minWidth: '100vw',
-    };
-  }, []);
 
   return (
     <>
-      <div style={containerStyle}>
+      <>
         <Formik
           initialValues={{
             [RFFormFieldEnum.goodThings]: [''],
@@ -39,15 +28,7 @@ const JournalForm: React.FC = () => {
             console.log(values);
           }}
         >
-          {({
-            handleSubmit,
-            values,
-            errors,
-            touched,
-            isValid,
-            setFieldValue,
-            setFieldTouched,
-          }) => {
+          {({ handleSubmit, values, setFieldValue, setFieldTouched }) => {
             return (
               <form onSubmit={handleSubmit}>
                 <div className='flex align-items-center justify-content-center'>
@@ -102,6 +83,16 @@ const JournalForm: React.FC = () => {
                         className='w-full'
                         type='submit'
                       />
+                      <Button
+                        label='Go back to Home'
+                        icon='pi pi-user'
+                        className='w-full mt-3'
+                        type='button'
+                        outlined
+                        onClick={() => {
+                          zNavigate(appRoutes.home);
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -109,7 +100,7 @@ const JournalForm: React.FC = () => {
             );
           }}
         </Formik>
-      </div>
+      </>
     </>
   );
 };

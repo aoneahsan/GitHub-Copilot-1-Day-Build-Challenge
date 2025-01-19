@@ -1,3 +1,4 @@
+import AuthGuard from '@/components/AuthGuard';
 import NotFound from '@/components/NotFound';
 import Login from '@/pages/Auth/Login';
 import Register from '@/pages/Auth/Register';
@@ -10,7 +11,11 @@ import { appRootRoute } from './routeTress';
 export const homePageRoute = createRoute({
   getParentRoute: () => appRootRoute,
   component: () => {
-    return <Home />;
+    return (
+      <AuthGuard isAuthenticatedRoute>
+        <Home />
+      </AuthGuard>
+    );
   },
   notFoundComponent: () => <NotFound />,
   path: appRoutes.home,
@@ -19,7 +24,11 @@ export const homePageRoute = createRoute({
 export const addJournalEntryPageRoute = createRoute({
   getParentRoute: () => appRootRoute,
   component: () => {
-    return <JournalForm />;
+    return (
+      <AuthGuard isAuthenticatedRoute>
+        <JournalForm />
+      </AuthGuard>
+    );
   },
   notFoundComponent: () => <NotFound />,
   path: appRoutes.addJournalEntry,
@@ -28,7 +37,11 @@ export const addJournalEntryPageRoute = createRoute({
 export const loginPageRoute = createRoute({
   getParentRoute: () => appRootRoute,
   component: () => {
-    return <Login />;
+    return (
+      <AuthGuard isUnAuthenticatedRoute>
+        <Login />
+      </AuthGuard>
+    );
   },
   notFoundComponent: () => <NotFound />,
   path: appRoutes.login,
@@ -37,8 +50,18 @@ export const loginPageRoute = createRoute({
 export const registerPageRoute = createRoute({
   getParentRoute: () => appRootRoute,
   component: () => {
-    return <Register />;
+    return (
+      <AuthGuard isUnAuthenticatedRoute>
+        <Register />
+      </AuthGuard>
+    );
   },
   notFoundComponent: () => <NotFound />,
   path: appRoutes.register,
+});
+
+export const notFoundPageRoute = createRoute({
+  getParentRoute: () => appRootRoute,
+  component: () => <NotFound />,
+  path: '*',
 });
