@@ -23,7 +23,8 @@
   "editor.codeActionsOnSave": {
     "source.removeUnusedImports": "explicit",
     "source.addMissingImports.ts": "explicit",
-    "source.fixAll.ts": "explicit"
+    "source.fixAll.ts": "explicit",
+    "source.sortImports": "explicit"
   },
   "prettier.enable": true,
   "editor.formatOnSave": true,

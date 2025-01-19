@@ -122,3 +122,5 @@ node_modules/
 
 emulator-data
 # Copied from Firebase backend - Ends
+# Sentry Config File
+.env.sentry-build-plugin
