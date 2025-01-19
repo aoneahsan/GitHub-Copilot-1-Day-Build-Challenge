@@ -6,9 +6,7 @@ const FirebaseHoc: React.FC = () => {
   const firebaseAuth = getAuthInstance();
 
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (firebaseUser) => {
-      console.log({ firebaseUser });
-    });
+    onAuthStateChanged(firebaseAuth, (firebaseUser) => {});
   }, []);
   return <></>;
 };

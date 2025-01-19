@@ -17,13 +17,13 @@ const ZBadThingsInputArray: React.FC<IZBadThingsInputArrayProps> = ({
   placeholder = 'I faced a challenge with ...',
 }) => {
   const { values, setFieldValue, setFieldTouched } = useFormikContext<{
-    [RFFormFieldEnum.badThings]: Array<string>;
+    [RFFormFieldEnum.challengingThings]: Array<string>;
   }>();
 
   return (
     <>
       <FieldArray
-        name={RFFormFieldEnum.badThings}
+        name={RFFormFieldEnum.challengingThings}
         render={({ insert, remove }) => {
           return (
             <>
@@ -36,7 +36,7 @@ const ZBadThingsInputArray: React.FC<IZBadThingsInputArrayProps> = ({
                 <Button
                   onClick={() => {
                     insert(
-                      values?.[RFFormFieldEnum.badThings]?.length || 0,
+                      values?.[RFFormFieldEnum.challengingThings]?.length || 0,
                       ''
                     );
                   }}
@@ -46,7 +46,7 @@ const ZBadThingsInputArray: React.FC<IZBadThingsInputArrayProps> = ({
                   Add
                 </Button>
               </div>
-              {values?.[RFFormFieldEnum.badThings]?.map((el, index) => {
+              {values?.[RFFormFieldEnum.challengingThings]?.map((el, index) => {
                 return (
                   <div
                     className='flex justify-content-between align-items-center flex-row mb-2'
@@ -61,19 +61,19 @@ const ZBadThingsInputArray: React.FC<IZBadThingsInputArrayProps> = ({
                       removeMargin
                       onChange={(val) => {
                         setFieldValue(
-                          `${RFFormFieldEnum.badThings}[${index}]`,
+                          `${RFFormFieldEnum.challengingThings}[${index}]`,
                           val,
                           true
                         );
                       }}
                       onBlur={() => {
                         setFieldTouched(
-                          `${RFFormFieldEnum.badThings}[${index}]`,
+                          `${RFFormFieldEnum.challengingThings}[${index}]`,
                           true,
                           true
                         );
                       }}
-                      value={values?.[RFFormFieldEnum.badThings][index]}
+                      value={values?.[RFFormFieldEnum.challengingThings][index]}
                     />
                     <Button
                       onClick={() => {

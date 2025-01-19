@@ -15,7 +15,7 @@ export enum FormInputTypeEnum {
 
 export enum RFFormFieldEnum {
   goodThings = 'goodThings',
-  badThings = 'badThings',
+  challengingThings = 'challengingThings',
   toRememberThisDayFor = 'toRememberThisDayFor',
   email = 'email',
   password = 'password',

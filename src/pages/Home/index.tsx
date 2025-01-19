@@ -1,8 +1,11 @@
 import assetsImages from '@/assets';
 import { getAuthInstance } from '@/firebaseInstance/auth';
+import { getFirestoreInstance } from '@/firebaseInstance/firestore';
 import { useZNavigate } from '@/hooks/tanstack/router';
 import { IJournal } from '@/types/journal';
+import { collectionNames } from '@/utils/constants/firestore';
 import { appRoutes } from '@/utils/constants/route';
+import { collection, getDocs, query } from 'firebase/firestore';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -12,10 +15,28 @@ const Home: React.FC = () => {
   const [journals, setJournals] = useState<IJournal[]>([]);
   const zNavigate = useZNavigate();
   const firebaseAuth = getAuthInstance();
+  const firestore = getFirestoreInstance();
+  const userId = firebaseAuth?.currentUser?.uid;
 
   useEffect(() => {
     const fetchJournals = async () => {
-      setJournals([]);
+      if (userId) {
+        const entriesRef = collection(
+          firestore,
+          collectionNames.users,
+          userId,
+          collectionNames.journals
+        );
+        const q = query(entriesRef);
+        const querySnapshot = await getDocs(q);
+
+        setJournals(
+          querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+        );
+      }
     };
 
     fetchJournals();

@@ -3,13 +3,20 @@ import ZInput from '@/components/FormComponents/ZInput';
 import ZBadThingsInputArray from '@/components/JournalForm/ZBadThingsInputArray';
 import ZGoodThingsInputArray from '@/components/JournalForm/ZGoodThingsInputArray';
 import { FormInputTypeEnum, RFFormFieldEnum } from '@/enums/form';
+import { getAuthInstance } from '@/firebaseInstance/auth';
+import { getFirestoreInstance } from '@/firebaseInstance/firestore';
 import { useZNavigate } from '@/hooks/tanstack/router';
+import { showToast } from '@/packagesHelpers/reactToastify';
+import { collectionNames } from '@/utils/constants/firestore';
 import { appRoutes } from '@/utils/constants/route';
+import { addDoc, collection } from 'firebase/firestore';
 import { Formik } from 'formik';
 import { Button } from 'primereact/button';
 
 const JournalForm: React.FC = () => {
   const zNavigate = useZNavigate();
+  const auth = getAuthInstance();
+  const firestore = getFirestoreInstance();
 
   return (
     <>
@@ -17,15 +24,39 @@ const JournalForm: React.FC = () => {
         <Formik
           initialValues={{
             [RFFormFieldEnum.goodThings]: [''],
-            [RFFormFieldEnum.badThings]: [''],
+            [RFFormFieldEnum.challengingThings]: [''],
             [RFFormFieldEnum.toRememberThisDayFor]: '',
             [RFFormFieldEnum.tags]: [],
           }}
           validate={(values) => {
             return {};
           }}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={async (values) => {
+            const user = auth.currentUser;
+
+            if (user) {
+              const journalsRef = collection(
+                firestore,
+                collectionNames.users,
+                user.uid,
+                collectionNames.journals
+              );
+              await addDoc(journalsRef, {
+                userId: user.uid,
+                goodThings: values[RFFormFieldEnum.goodThings],
+                challengingThings: values[RFFormFieldEnum.challengingThings],
+                toRememberThisDayFor:
+                  values[RFFormFieldEnum.toRememberThisDayFor],
+                tags: values[RFFormFieldEnum.tags],
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+              });
+              showToast({ content: 'Journal Entry Created Successfully!' });
+
+              zNavigate(appRoutes.home);
+            } else {
+              showToast({ content: 'No user is logged in' });
+            }
           }}
         >
           {({ handleSubmit, values, setFieldValue, setFieldTouched }) => {
