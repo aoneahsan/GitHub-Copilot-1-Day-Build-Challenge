@@ -20,7 +20,6 @@
     "update:linked-packages": "yarn install --force && yarn link zaions-tool-kit && yarn link zaions-react-tool-kit",
     "unlink-packages": "yarn unlink zaions-tool-kit && yarn unlink zaions-react-tool-kit && yarn install --force",
     "deploy": "npm run build && firebase deploy",
-    "deploy:prod": "npm run build && firebase deploy --project production",
     "sync:local-packages": "npm run unlink-packages && npm run update:linked-packages",
     "install:publish-packages": "yarn add zaions-tool-kit zaions-react-tool-kit zaions-react-ui-kit",
     "uninstall:publish-packages": "yarn remove zaions-tool-kit zaions-react-tool-kit zaions-react-ui-kit",
