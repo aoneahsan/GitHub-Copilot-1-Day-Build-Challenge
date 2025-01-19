@@ -1,4 +1,6 @@
 import NotFound from '@/components/NotFound';
+import Login from '@/pages/Auth/Login';
+import Register from '@/pages/Auth/Register';
 import Home from '@/pages/Home';
 import JournalForm from '@/pages/JournalForm';
 import { appRoutes } from '@/utils/constants/route';
@@ -21,4 +23,22 @@ export const addJournalEntryPageRoute = createRoute({
   },
   notFoundComponent: () => <NotFound />,
   path: appRoutes.addJournalEntry,
+});
+
+export const loginPageRoute = createRoute({
+  getParentRoute: () => appRootRoute,
+  component: () => {
+    return <Login />;
+  },
+  notFoundComponent: () => <NotFound />,
+  path: appRoutes.login,
+});
+
+export const registerPageRoute = createRoute({
+  getParentRoute: () => appRootRoute,
+  component: () => {
+    return <Register />;
+  },
+  notFoundComponent: () => <NotFound />,
+  path: appRoutes.register,
 });

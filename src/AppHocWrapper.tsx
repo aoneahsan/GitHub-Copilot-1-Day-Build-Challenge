@@ -1,6 +1,8 @@
 import { RouterProvider } from '@tanstack/react-router';
 import { DevTools, FormatSimple, Tolgee, TolgeeProvider } from '@tolgee/react';
 import { PrimeReactProvider } from 'primereact/api';
+import { ToastContainer } from 'react-toastify';
+import FirebaseHoc from './HOC/FirebaseHoc';
 import OneSignalHOC from './HOC/OneSignalHoc';
 import SentryHoc from './HOC/SentryHoc';
 import appRouter from './routes';
@@ -32,6 +34,8 @@ const AppHocWrapper: React.FC = () => {
       </TolgeeProvider>
       <SentryHoc />
       <OneSignalHOC />
+      <ToastContainer />
+      <FirebaseHoc />
     </>
   );
 };
