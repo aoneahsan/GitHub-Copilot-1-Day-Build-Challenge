@@ -1,10 +1,11 @@
+import { RouterProvider } from '@tanstack/react-router';
 import { PrimeReactProvider } from 'primereact/api';
-import Home from '@/pages/Home';
+import appRouter from './routes';
 
 const AppHocWrapper: React.FC = () => {
   return (
     <PrimeReactProvider>
-      <Home />
+      <RouterProvider router={appRouter} />
     </PrimeReactProvider>
   );
 };
