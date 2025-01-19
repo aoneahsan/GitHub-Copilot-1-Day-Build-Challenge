@@ -2,12 +2,12 @@ import { Button } from 'primereact/button';
 import { useRef } from 'react';
 import { useButton } from 'react-aria';
 
-interface ZButtonProps {
+interface IZButtonProps {
   onClick?: () => void;
   children?: React.ReactNode;
 }
 
-const ZButton: React.FC<ZButtonProps> = ({ children, onClick }) => {
+const ZButton: React.FC<IZButtonProps> = ({ children, onClick }) => {
   let ref = useRef(null);
 
   const ariaButtonProps = useButton({}, ref);

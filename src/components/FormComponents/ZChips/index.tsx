@@ -1,28 +1,26 @@
-import { FormInputTypeEnum } from '@/enums/form';
-import { InputText } from 'primereact/inputtext';
+import { RFFormFieldEnum } from '@/enums/form';
+import { Chips } from 'primereact/chips';
 
-interface IZInputProps {
+interface IZChipsProps {
   id: string; // used for the 'for' attribute in the label
   placeholder: string;
   labelClassName?: string;
   inputClassName?: string;
-  type: FormInputTypeEnum;
   labelText?: string;
   hideLabel?: boolean;
   onChange: (e: any) => void;
-  value: string;
+  value: string[];
   onBlur: () => void;
   removeMargin?: boolean;
 }
 
-const ZInput: React.FC<IZInputProps> = ({
+const ZChips: React.FC<IZChipsProps> = ({
   labelClassName,
   id,
   placeholder,
   inputClassName,
-  type,
   labelText,
-  hideLabel,
+  hideLabel = false,
   onBlur,
   onChange,
   value,
@@ -38,25 +36,25 @@ const ZInput: React.FC<IZInputProps> = ({
           {labelText}
         </label>
       )}
-      <InputText
-        id={id}
-        type={type}
+
+      <Chips
         placeholder={placeholder}
+        id={RFFormFieldEnum.tags}
         className={`w-full ${inputClassName} ${removeMargin ? '' : 'mb-3'}`}
+        value={value}
         onChange={(e) => {
           if (onChange) {
-            onChange(e?.target?.value);
+            onChange(e?.value);
           }
         }}
-        onBlur={(e) => {
+        onBlur={() => {
           if (onBlur) {
             onBlur();
           }
         }}
-        value={value ?? ''}
       />
     </>
   );
 };
 
-export default ZInput;
+export default ZChips;

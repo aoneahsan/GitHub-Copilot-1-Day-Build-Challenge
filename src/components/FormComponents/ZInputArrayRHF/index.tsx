@@ -7,7 +7,7 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 
-interface ZInputArrayProps {
+interface IZInputArrayRHFProps {
   id: string; // used for the 'for' attribute in the label
   placeholder: string;
   labelClassName?: string;
@@ -18,7 +18,7 @@ interface ZInputArrayProps {
   formFieldRegister: UseFormRegister<FieldValues>;
 }
 
-const ZInputArray: React.FC<ZInputArrayProps> = ({
+const ZInputArrayRHF: React.FC<IZInputArrayRHFProps> = ({
   labelClassName,
   id,
   placeholder,
@@ -57,4 +57,4 @@ const ZInputArray: React.FC<ZInputArrayProps> = ({
   );
 };
 
-export default ZInputArray;
+export default ZInputArrayRHF;

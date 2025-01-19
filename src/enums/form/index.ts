@@ -12,3 +12,12 @@ export enum FormInputTypeEnum {
   month = 'month',
   week = 'week',
 }
+
+export enum RFFormFieldEnum {
+  goodThings = 'goodThings',
+  badThings = 'badThings',
+  toRememberThisDayFor = 'toRememberThisDayFor',
+  email = 'email',
+  password = 'password',
+  tags = 'tags',
+}

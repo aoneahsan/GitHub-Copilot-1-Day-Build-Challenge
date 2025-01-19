@@ -1,13 +1,13 @@
 import { T } from '@tolgee/react';
 
-interface ZTranslateProps {
+interface IZTranslateProps {
   keyName: string;
   defaultValue?: string;
   noWrap?: false;
   params?: Record<string, string | number>;
 }
 
-const ZTranslate: React.FC<ZTranslateProps> = ({
+const ZTranslate: React.FC<IZTranslateProps> = ({
   keyName,
   defaultValue,
   noWrap = false,
