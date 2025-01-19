@@ -6306,6 +6306,11 @@ once@^1.3.0, once@^1.4.0:
   dependencies:
     wrappy "1"
 
+onesignal-cordova-plugin@^5.2.9:
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/onesignal-cordova-plugin/-/onesignal-cordova-plugin-5.2.9.tgz#8c167cd435370ac599948ee099674158b56403fb"
+  integrity sha512-+2Iri3AdDlERN5DZiED9LQEj8wJuRbx+NeqQQsWHzEQgPm22CXJg8U8cpInsJe6LTONAhRrm4XmnDSnjepPhgQ==
+
 open@^8.4.0:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/open/-/open-8.4.2.tgz#5b5ffe2a8f793dcd2aad73e550cb87b59cb084f9"
@@ -6698,6 +6703,11 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-onesignal@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-onesignal/-/react-onesignal-3.0.1.tgz#055cc4f80cf0d58328c8febef6ca08242ed76620"
+  integrity sha512-AfAtGdXRcuMhVf+9OXehGcQeiJIYl1ihAByvfVNa3RCA1Vnn19tBha4XQB+o3ukUh2IQn0yiflRO4vXgI9nOng==
 
 react-refresh@^0.14.2:
   version "0.14.2"

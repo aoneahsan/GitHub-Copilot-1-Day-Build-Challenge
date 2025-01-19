@@ -1,6 +1,7 @@
 import { RouterProvider } from '@tanstack/react-router';
 import { DevTools, FormatSimple, Tolgee, TolgeeProvider } from '@tolgee/react';
 import { PrimeReactProvider } from 'primereact/api';
+import OneSignalHOC from './HOC/OneSignalHoc';
 import SentryHoc from './HOC/SentryHoc';
 import appRouter from './routes';
 import envKeys from './utils/envKeys';
@@ -30,6 +31,7 @@ const AppHocWrapper: React.FC = () => {
         </PrimeReactProvider>
       </TolgeeProvider>
       <SentryHoc />
+      <OneSignalHOC />
     </>
   );
 };
