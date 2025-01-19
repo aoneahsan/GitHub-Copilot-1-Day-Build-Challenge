@@ -1,7 +1,0 @@
-{
-  "name": "Reflectify",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}
