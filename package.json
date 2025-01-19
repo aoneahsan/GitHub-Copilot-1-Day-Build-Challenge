@@ -61,6 +61,7 @@
     "dotenv": "^16.4.7",
     "firebase": "^11.2.0",
     "immer": "^10.1.1",
+    "primereact": "^10.9.1",
     "qs": "^6.14.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -81,8 +82,8 @@
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.18.0",
     "eslint-plugin-react": "^7.37.4",
-    "typescript": "^5.7.3",
     "sass": "^1.83.4",
+    "typescript": "^5.7.3",
     "vite": "~6.0.7"
   },
   "description": "Reflectify is a daily journaling app that empowers users to reflect on their day by documenting 3 good things, 3 bad things, and 1 memorable moment. It's your personal companion for fostering mindfulness, self-growth, and building a meaningful habit of reflection.",
