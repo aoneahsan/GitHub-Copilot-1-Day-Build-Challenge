@@ -180,7 +180,7 @@ const Register: React.FC = () => {
           icon='pi pi-user'
           className='w-full mt-3'
           onClick={() => {
-            zNavigate(appRoutes.register);
+            zNavigate(appRoutes.login);
           }}
         />
       </div>
